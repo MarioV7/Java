@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            background-color: rgb(228, 111, 90);
+        }
+    </style>
+</head>
+<body>
+
+    <br><br><br>
+    <label>Comunidades autónomas: </label>
+    <select name="" id="tSelComunidades">
+        <option value="ninguno">Seleccione una comunidad</option>
+    </select>
+    <div id="tDivProvincias"></div>
+
+    <script>
+        'use strict';
+
+        const comunidadesProvincias = [
+            {
+                id: 'and',
+                nombre: 'Andalucía',
+                provincias: [
+                    { id: 'alm', nombre: 'Almería' },
+                    { id: 'cad', nombre: 'Cádiz' },
+                    { id: 'cor', nombre: 'Córdoba' },
+                    { id: 'gra', nombre: 'Granada' },
+                    { id: 'hue', nombre: 'Huelva' },
+                    { id: 'mal', nombre: 'Málaga' },
+                    { id: 'sev', nombre: 'Sevilla' },
+                    { id: 'jae', nombre: 'Jaén' }
+                ]
+            },
+            {
+                id: 'cat',
+                nombre: 'Cataluña',
+                provincias: [
+                    { id: 'bar', nombre: 'Barcelona' },
+                    { id: 'ler', nombre: 'Lérida' },
+                    { id: 'ger', nombre: 'Gerona' },
+                    { id: 'tar', nombre: 'Tarragona' }
+                ]
+            },
+            {
+                id: 'rio',
+                nombre: 'La Rioja',
+                provincias: [
+                    { id: 'log', nombre: 'Logroño' }
+                ]
+            },
+            {
+                id: 'can',
+                nombre: 'Canarias',
+                provincias: [
+                    { id: 'pal', nombre: 'Las Palmas' },
+                    { id: 'ten', nombre: 'Santa Cruz de Tenerife' }
+                ]
+            },
+            {
+                id: 'vas',
+                nombre: 'País Vasco',
+                provincias: [
+                    { id: 'ala', nombre: 'Alava' },
+                    { id: 'gui', nombre: 'Guipúzcoa' },
+                    { id: 'viz', nombre: 'Vizcaya' }
+                ]
+            },
+            {
+                id: 'gal',
+                nombre: 'Galicia',
+                provincias: [
+                    { id: 'pon', nombre: 'Pontevedra' },
+                    { id: 'cor', nombre: 'La Coruña' },
+                    { id: 'lug', nombre: 'Lugo' },
+                    { id: 'ore', nombre: 'Orense' }
+                ]
+            },
+            {
+                id: 'cab',
+                nombre: 'Cantabria',
+                provincias: [
+                    { id: 'cab', nombre: 'Cantabria' }
+                ]
+            },
+            {
+                id: 'leo',
+                nombre: 'Castilla y León',
+                provincias: [
+                    { id: 'avi', nombre: 'Avila' },
+                    { id: 'bur', nombre: 'Burgos' },
+                    { id: 'pac', nombre: 'Palencia' },
+                    { id: 'val', nombre: 'Valladolid' },
+                    { id: 'zam', nombre: 'Zamora' },
+                    { id: 'leo', nombre: 'León' },
+                    { id: 'sor', nombre: 'Soria' },
+                    { id: 'sal', nombre: 'Salamanca' },
+                    { id: 'seg', nombre: 'Segovia' }
+                ]
+            },
+            {
+                id: 'val',
+                nombre: 'Comunidad Valenciana',
+                provincias: [
+                    { id: 'ali', nombre: 'Alicante' },
+                    { id: 'val', nombre: 'Valencia' },
+                    { id: 'cst', nombre: 'Castellón' }
+                ]
+            },
+            {
+                id: 'ext',
+                nombre: 'Extremadura',
+                provincias: [
+                    { id: 'bad', nombre: 'Badajoz' },
+                    { id: 'cac', nombre: 'Cáceres' }
+                ]
+            },
+            {
+                id: 'mur',
+                nombre: 'Región de Murcia',
+                provincias: [
+                    { id: 'mur', nombre: 'Murcia' }
+                ]
+            },
+            {
+                id: 'man',
+                nombre: 'Castilla-La Mancha',
+                provincias: [
+                    { id: 'alb', nombre: 'Albacete' },
+                    { id: 'cre', nombre: 'Ciudad Real' },
+                    { id: 'tol', nombre: 'Toledo' },
+                    { id: 'cue', nombre: 'Cuenca' },
+                    { id: 'gua', nombre: 'Guadalajara' }
+                ]
+            },
+            {
+                id: 'iba',
+                nombre: 'Islas Baleares',
+                provincias: [
+                    { id: 'iba', nombre: 'Islas Baleares' }
+                ]
+            },
+            {
+                id: 'nav',
+                nombre: 'Navarra',
+                provincias: [
+                    { id: 'nav', nombre: 'Navarra' }
+                ]
+            },
+            {
+                id: 'mad',
+                nombre: 'Comunidad de Madrid',
+                provincias: [
+                    { id: 'mad', nombre: 'Madrid' }
+                ]
+            },
+            {
+                id: 'ast',
+                nombre: 'Principado de Asturias',
+                provincias: [
+                    { id: 'ast', nombre: 'Asturias' }
+                ]
+            },
+            {
+                id: 'ara',
+                nombre: 'Aragón',
+                provincias: [
+                    { id: 'zar', nombre: 'Zaragoza' },
+                    { id: 'hue', nombre: 'Huesca' },
+                    { id: 'ter', nombre: 'Teruel' }
+                ]
+            }
+        ]
+    
+        window.onload = inicializar;
+        
+        function inicializar(e) {
+            document.getElementById('tSelComunidades').onchange = mostrarProvincias;
+            mostrarComunidades();
+        }
+
+        function mostrarComunidades() {
+            const nSelect = document.getElementById('tSelComunidades');
+
+            for (const comunidad of comunidadesProvincias) {
+                const nOption = document.createElement('option');
+                nOption.setAttribute('value', comunidad.id)
+                nSelect.appendChild(nOption);
+
+                const nText = document.createTextNode(comunidad.nombre);
+                nOption.appendChild(nText);
+            }
+        }
+
+        function mostrarProvincias(e) {
+            document.getElementById('tDivProvincias').innerHTML = '';
+
+            //const comunidadActual = document.getElementById('tSelComunidades').value;
+            const comunidadActual = e.target.value;
+
+            let provincias;
+            for (const comunidad of comunidadesProvincias) {
+                if (comunidad.id === comunidadActual) {
+                    provincias = comunidad.provincias;
+                    break;
+                }
+            }
+
+            const nDiv = document.getElementById('tDivProvincias');
+
+            for (const provincia of provincias) {
+
+                const nInput = document.createElement('input');
+                nInput.setAttribute('type', 'radio');
+                nInput.setAttribute('name', 'provincia');
+                nInput.setAttribute('id', `tRad${provincia.id.charAt(0).toUpperCase()}${provincia.id.slice(1)}`);
+                nInput.setAttribute('value', provincia.id);
+                nDiv.appendChild(nInput);
+
+                const nLabel = document.createElement('label');
+                nLabel.setAttribute('for', `tRad${provincia.id.charAt(0).toUpperCase()}${provincia.id.slice(1)}`);
+                nDiv.appendChild(nLabel);
+                const nText = document.createTextNode(provincia.nombre);
+                nLabel.appendChild(nText);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
