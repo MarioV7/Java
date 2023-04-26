@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		function comparaCadenas(texto) {
+			if (texto==texto.toUpperCase()) {
+				document.write("La cadena de texto \""+texto+"\" está escrita en mayúsculas.");
+			}
+			else if (texto==texto.toLowerCase()) {
+				document.write("La cadena de texto \""+texto+"\" está escrita en minúsculas.");
+			}else {
+				document.write("La cadena de texto \""+texto+"\" está escrita en mayúsculas y minúsculas.");
+			}
+		}
+
+		comparaCadenas(prompt("Introduce una cadena de texto: "));
+
+	</script>
+
+</body>
+</html>
