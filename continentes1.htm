@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <label>Continentes:</label>
+    <select id="tagSelContinentes"></select>
+
+    <script type="text/javascript">
+        "use strict";
+
+        let continentes = [];
+        continentes["eu"] = "Europa";
+        continentes["as"] = "Asia";
+        continentes["af"] = "África";
+        continentes["oc"] = "Oceanía";
+        continentes["an"] = "Antártida";
+        continentes["am"] = "América";
+
+        window.onload = function() {
+            let tagSelContinentes = document.getElementById("tagSelContinentes");
+
+
+            for (let i in continentes) {
+                let nodOptContinente = document.createElement("option");
+                nodOptContinente.setAttribute("value", i);
+                tagSelContinentes.appendChild(nodOptContinente);
+
+                let nodTxtContinente = document.createTextNode(continentes[i]);
+                nodOptContinente.appendChild(nodTxtContinente);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <label>Continentes:</label>
+    <ul id="tagUlContinentes"></ul>
+
+    <script type="text/javascript">
+        "use strict";
+
+        let continentes = new Array();
+        continentes.push("Europa");
+        continentes.push("Asia");
+        continentes.push("África");
+        continentes.push("Oceanía");
+        continentes.push("Antártida");
+        continentes.push("América");
+
+        window.onload = function() {
+            let tagUlContinentes = document.getElementById("tagUlContinentes");
+
+
+            for (let continente of continentes) {
+                let nodLiContinente = document.createElement("li");
+                tagUlContinentes.appendChild(nodLiContinente);
+
+                let nodTxtContinente = document.createTextNode(continente);
+                nodLiContinente.appendChild(nodTxtContinente);
+            }
+        }
+    </script>
+</body>
+</html>

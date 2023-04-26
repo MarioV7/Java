@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <label>Continents:</label>
+    <ul id="tagUlContinents"></ul>
+
+    <script type="text/javascript">
+        "use strict";
+
+        let continents = [
+            {
+                name: "Europa", 
+                countries: [
+                    "España",
+                    "Francia",
+                    "Alemania",
+                    "Dinamarca"
+                ]
+            },
+            {
+                name: "Asia", 
+                countries: [
+                    "Japón",
+                    "India",
+                    "Filipinas"
+                ]
+            }            ,
+            {
+                name: "América", 
+                countries: [
+                    "Estados Unidos",
+                    "México",
+                    "Brasil",
+                    "Chile"
+                ]
+            },
+            {
+                name: "Oceania", 
+                countries: [
+                    "Australia",
+                    "Nueva Zelanda"
+                ]
+            },
+            {
+                name: "África", 
+                countries: [
+                    "Marruecos",
+                    "Nigeria",
+                    "Sudáfrica"
+                ]
+            },
+            {
+                name: "Antártida", 
+                countries: [
+                    "Ninguno"
+                ]
+            }
+        ];
+
+        window.onload = function() {
+            let tagUlContinents = document.getElementById("tagUlContinents");
+
+
+            for (let continent of continents) {
+                let nodLiContinent = document.createElement("li");
+                tagUlContinents.appendChild(nodLiContinent);
+
+                let nodTxtContinent = document.createTextNode(continent.name);
+                nodLiContinent.appendChild(nodTxtContinent);
+
+                let nodOlCountries = document.createElement("ol");
+                tagUlContinents.appendChild(nodOlCountries);
+
+                for (let country of continent.countries) {
+                    let nodLiCountry = document.createElement("li");
+                    nodOlCountries.appendChild(nodLiCountry);
+
+                    let nodTxtCountriy = document.createTextNode(country);
+                    nodLiCountry.appendChild(nodTxtCountriy);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
